@@ -19,6 +19,11 @@ class UserAccess
     {
         if(auth()->user()->type == $userType){
             return $next($request);
+        }elseif (auth()->user()->type == "admin"){
+            return $next($request);
+        }
+        elseif (auth()->user()->type == "manager"){
+            return $next($request);
         }
           
         return response()->json(['You do not have permission to access for this page.']);

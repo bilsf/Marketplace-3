@@ -18,9 +18,9 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('s', function () {
-    return view('user.index');
-});
+// Route::get('s', function () {
+//     return view('user.index');
+// });
 
 Auth::routes();
 
@@ -31,7 +31,7 @@ All Normal Users Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('user.index');
 });
 
 /*------------------------------------------
