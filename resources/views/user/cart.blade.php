@@ -135,7 +135,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
-                                        <tr>
+                                        {{-- <tr>
                                             <td>
                                                 <div class="img">
                                                     <a href="#"><img src="img/product-1.jpg" alt="Image"></a>
@@ -206,8 +206,8 @@
                                             </td>
                                             <td>$99</td>
                                             <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
+                                        </tr> --}}
+                                        {{-- <tr>
                                             <td>
                                                 <div class="img">
                                                     <a href="#"><img src="img/product-5.jpg" alt="Image"></a>
@@ -224,7 +224,51 @@
                                             </td>
                                             <td>$99</td>
                                             <td><button><i class="fa fa-trash"></i></button></td>
+                                        </tr> --}}
+                                        @php $total = 0 @endphp
+                                        @if(session('cart'))
+                                            @foreach(session('cart') as $id => $details)
+                                                @php $total += $details['price'] * $details['quantity'] @endphp
+                                                <tr data-id="{{ $id }}">
+                                                    <td data-th="Product">
+                                                        <div class="row">
+                                                            <div class="col-sm-3 hidden-xs"><img src="{{ $details['image'] }}" width="100" height="100" class="img-responsive"/></div>
+                                                            <div class="col-sm-9">
+                                                                <h4 class="nomargin">{{ $details['name'] }}</h4>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td data-th="Price">${{ $details['price'] }}</td>
+                                                    <td data-th="Quantity">
+                                                        {{-- <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                                                        <button class="btn-plus"><i class="fa fa-plus"></i></button> --}}
+                                                        <div class="qty">
+                                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                                                            <input type="number" value="{{ $details['quantity'] }}" class="quantity update-cart" />
+                                                            {{-- <input type="text" value="1"> --}}
+                                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                    </td>
+                                                    <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}</td>
+                                                    <td class="actions" data-th="">
+                                                        <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" class="text-right"><h3><strong>Total ${{ $total }}</strong></h3></td>
                                         </tr>
+                                        <tr>
+                                            <td colspan="5" class="text-right">
+                                                <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+                                                <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Checkout</a>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                                     </tbody>
                                 </table>
                             </div>
@@ -356,10 +400,56 @@
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="{{ asset('ecommerce-html-template/lib/easing/easing.min.js') }}"></script>
         <script src="{{ asset('ecommerce-html-template/lib/slick/slick.min.js') }}"></script>
 
         <!-- Template Javascript -->
         <script src="{{ asset('ecommerce-html-template/js/main.js')}}"></script>
+
+        <script type="text/javascript">
+  
+            $(".update-cart").change(function (e) {
+                e.preventDefault();
+          
+                var ele = $(this);
+          
+                $.ajax({
+                    url: '{{ route('update.cart') }}',
+                    method: "patch",
+                    data: {
+                        _token: '{{ csrf_token() }}', 
+                        id: ele.parents("tr").attr("data-id"), 
+                        quantity: ele.parents("tr").find(".quantity").val()
+                    },
+                    success: function (response) {
+                       window.location.reload();
+                    }
+                });
+            });
+          
+            $(".remove-from-cart").click(function (e) {
+                e.preventDefault();
+          
+                var ele = $(this);
+          
+                if(confirm("Are you sure want to remove?")) {
+                    $.ajax({
+                        url: '{{ route('remove.from.cart') }}',
+                        method: "DELETE",
+                        data: {
+                            _token: '{{ csrf_token() }}', 
+                            id: ele.parents("tr").attr("data-id")
+                        },
+                        success: function (response) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+          
+        </script>        
     </body>
 </html>

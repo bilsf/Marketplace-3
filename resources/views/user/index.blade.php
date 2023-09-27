@@ -18,6 +18,9 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link href="{{ asset('ecommerce-html-template/lib/slick/slick.css') }}" rel="stylesheet">
         <link href="{{ asset('ecommerce-html-template/lib/slick/slick-theme.css') }}" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
 
         <!-- Template Stylesheet -->
         <link href="{{ asset('ecommerce-html-template/css/style.css') }}" rel="stylesheet">
@@ -101,11 +104,26 @@
                     </div>
                     <div class="col-md-3">
                         <div class="user">
-
+{{-- 
                             <a href="cart.html" class="btn cart">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>(0)</span>
-                            </a>
+                            </a> --}}
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-12 main-section">
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-info" data-toggle="dropdown">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                                <div class="col-lg-12 col-sm-12 col-12">
+                                                    <a href="{{ route('user.cart') }}" class="btn btn-primary btn-block">View all</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -315,6 +333,21 @@
             <div class="container-fluid">
                 <div class="section-header">
                     <h1>Featured Product</h1>
+                </div>
+                <div class="row">
+                    @foreach($products as $product)
+                        <div class="col-xs-18 col-sm-6 col-md-3">
+                            <div class="thumbnail">
+                                <img src="{{ $product->image }}" alt="">
+                                <div class="caption">
+                                    <h4>{{ $product->name }}</h4>
+                                    <p>{{ $product->description }}</p>
+                                    <p><strong>Price: </strong> {{ $product->price }}$</p>
+                                    <p class="btn-holder"><a href="{{ route('add.to.cart', $product->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="row align-items-center product-slider product-slider-4">
                     <div class="col-lg-3">
