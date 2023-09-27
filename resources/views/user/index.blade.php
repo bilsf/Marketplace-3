@@ -171,21 +171,21 @@
                                 <img src="img/slider-1.jpg" alt="Slider Image" />
                                 <div class="header-slider-caption">
                                     <p>Some text goes here that describes the image</p>
-                                    <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
+                                    <a class="btn" href="{{ route('user.product-list') }}"><i class="fa fa-shopping-cart"></i>Shop Now</a>
                                 </div>
                             </div>
                             <div class="header-slider-item">
                                 <img src="img/slider-2.jpg" alt="Slider Image" />
                                 <div class="header-slider-caption">
                                     <p>Some text goes here that describes the image</p>
-                                    <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
+                                    <a class="btn" href="{{ route('user.product-list') }}"><i class="fa fa-shopping-cart"></i>Shop Now</a>
                                 </div>
                             </div>
                             <div class="header-slider-item">
                                 <img src="img/slider-3.jpg" alt="Slider Image" />
                                 <div class="header-slider-caption">
                                     <p>Some text goes here that describes the image</p>
-                                    <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
+                                    <a class="btn" href="{{ route('user.product-list') }}"><i class="fa fa-shopping-cart"></i>Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -664,12 +664,10 @@
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                    
                                 </div>
                                 <p>
-                                  bapak jokowi pernah jajan disini di shopee pink ber;angganan sebulan 500k
+                                 Yo ndak tau tanya tanya saya
                                 </p>
                             </div>
                         </div>

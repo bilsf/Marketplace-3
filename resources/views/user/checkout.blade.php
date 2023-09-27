@@ -52,20 +52,17 @@
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
-                            <a href="{{ route('user.index') }}" class="nav-item nav-link active">Home</a>
+                            <a href="{{ route('user.index') }}" class="nav-item nav-link ">Home</a>
                             <a href="{{ route('user.product-list') }}" class="nav-item nav-link">Products</a>
                             <a href="{{ route('user.product-detail') }}" class="nav-item nav-link">Product Detail</a>
                             <a href="{{ route('user.cart') }}" class="nav-item nav-link">Cart</a>
-                            <a href="{{ route('user.checkout') }}" class="nav-item nav-link">Checkout</a>
+                            <a href="{{ route('user.checkout') }}" class="nav-item nav-link active">Checkout</a>
                             <a href="{{ route('user.my-account') }}" class="nav-item nav-link">My Account</a>
                         </div>
                         <div class="navbar-nav ml-auto">
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                                <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item">Login</a>
-                                    <a href="#" class="dropdown-item">Register</a>
-                                </div>
+                            <div class="nav-item">
+                                <a href="#" class="nav-link">User Account</a>
+                               
                             </div>
                         </div>
                     </div>
