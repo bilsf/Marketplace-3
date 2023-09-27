@@ -30,8 +30,13 @@ All Normal Users Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-
     Route::get('/home', [HomeController::class, 'index'])->name('user.index');
+    Route::get('/cart', [HomeController::class, 'cart'])->name('user.cart');
+    Route::get('/product', [HomeController::class, 'product'])->name('user.product-list');
+    Route::get('/detail', [HomeController::class, 'product_detail'])->name('user.product-detail');
+    Route::get('/checkout', [HomeController::class, 'checkout'])->name('user.checkout');
+    Route::get('/account', [HomeController::class, 'my'])->name('user.my-account');
+    Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('user.wishlist');
 });
 
 /*------------------------------------------

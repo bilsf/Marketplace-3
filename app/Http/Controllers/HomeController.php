@@ -46,4 +46,34 @@ class HomeController extends Controller
     {
         return view('managerHome');
     }
+
+    public function cart(): View
+    {
+        return view('user.cart');
+    }
+
+    public function product():View
+    {
+        return view('user.product-list');
+    }
+
+    public function product_detail():View
+    {
+        return view('user.product-detail');
+    }
+
+    public function checkout():View
+    {
+        return view('user.checkout');
+    }
+
+    public function my():View
+    {
+        return view('user.my-account');
+    }
+
+    public function wishlist():View
+    {
+        return view('user.wishlist');
+    }
 }

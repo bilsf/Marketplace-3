@@ -52,20 +52,27 @@
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="product-list.html" class="nav-item nav-link">Products</a>
-                            <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
-                            <a href="cart.html" class="nav-item nav-link">Cart</a>
-                            <a href="checkout.html" class="nav-item nav-link">Checkout</a>
-                            <a href="my-account.html" class="nav-item nav-link">My Account</a>
+                            <a href="{{ route('user.index') }}" class="nav-item nav-link active">Home</a>
+                            <a href="{{ route('user.product-list') }}" class="nav-item nav-link">Products</a>
+                            <a href="{{ route('user.product-detail') }}" class="nav-item nav-link">Product Detail</a>
+                            <a href="{{ route('user.cart') }}" class="nav-item nav-link">Cart</a>
+                            <a href="{{ route('user.checkout') }}" class="nav-item nav-link">Checkout</a>
+                            <a href="{{ route('user.my-account') }}" class="nav-item nav-link">My Account</a>
                             </div>
                         </div>
                         <div class="navbar-nav ml-auto">
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
                                 <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item">Login</a>
-                                    <a href="#" class="dropdown-item">Register</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+    
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                 </div>
                             </div>
                         </div>
